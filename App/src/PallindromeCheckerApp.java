@@ -1,42 +1,58 @@
+import java.util.Stack;
+
 /**
- * MAIN CLASS - UseCase3PalindromeCheckerApp
+ * MAIN CLASS - UseCase5PalindromeCheckerApp
  *
- * Use Case 3: Reverse String Based Palindrome Check
+ * Use Case 5: Stack Based Palindrome Checker
  *
  * Description:
- * This class checks whether a string is a palindrome
- * by reversing the string and comparing it with
- * the original value.
+ * This class validates a palindrome using a Stack
+ * data structure which follows the LIFO principle.
+ *
+ * At this stage, the application:
+ * - Pushes characters into a stack
+ * - Pops them in reverse order
+ * - Compares with the original sequence
+ * - Displays the result
  *
  * @author Developer
- * @version 3.0
+ * @version 5.0
  */
 
-public class UseCase3PalindromeCheckerApp {
 
     /**
-     * Application entry point for UC3.
+     * Application entry point for UC5.
      * @param args Command-Line arguments
      */
     public static void main(String[] args) {
 
-        // Declare and initialize input string
-        String input = "madam";
+        // Declare and initialize the input string
+        String input = "noon";
 
-        // Variable to store reversed string
-        String reversed = "";
+        // Create a Stack to store characters
+        Stack<Character> stack = new Stack<>();
 
-        // Iterate from the last character to the first
-        for (int i = input.length() - 1; i >= 0; i--) {
-            reversed = reversed + input.charAt(i);
+        // Push each character of the string into the stack
+        for (char c : input.toCharArray()) {
+            stack.push(c);
         }
 
-        // Check palindrome
-        boolean isPalindrome = input.equals(reversed);
+        // Assume palindrome initially
+        boolean isPalindrome = true;
 
-        // Print result
+        // Iterate again through original string
+        for (char c : input.toCharArray()) {
+
+            char popped = stack.pop();
+
+            if (c != popped) {
+                isPalindrome = false;
+                break;
+            }
+        }
+
+        // Display result
         System.out.println("Input : " + input);
-        System.out.println("Reversed : " + reversed);
         System.out.println("Is Palindrome? : " + isPalindrome);
     }
 }
